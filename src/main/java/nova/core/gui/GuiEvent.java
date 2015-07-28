@@ -4,10 +4,9 @@ import nova.core.block.Block;
 import nova.core.entity.Entity;
 import nova.core.entity.component.Player;
 import nova.core.event.CancelableEvent;
-import nova.core.game.InputManager.Key;
 import nova.core.gui.render.Graphics;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import nova.core.world.World;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Optional;
 
@@ -58,11 +57,11 @@ public class GuiEvent extends CancelableEvent {
 
 	public static class KeyEvent extends GuiEvent {
 
-		public final Key key;
+		public final InputManager.Key key;
 		public final int character;
 		public final EnumKeyState state;
 
-		public KeyEvent(Key key, char character, EnumKeyState state) {
+		public KeyEvent(InputManager.Key key, char character, EnumKeyState state) {
 			this.key = key;
 			this.character = character;
 			this.state = state;

@@ -15,7 +15,7 @@ import nova.wrapper.mc18.launcher.NovaMinecraft;
  * @author Calclavia
  */
 @NovaMod(id = "nova-gui", name = "NOVA-GUI", version = "0.0.1", modules = { GuiModule.class }, novaVersion = "0.1.0")
-public class NovaGui implements Loadable {
+public class NovaGuiWrapper implements Loadable {
 
 	@SideOnly(Side.CLIENT)
 	@Override
