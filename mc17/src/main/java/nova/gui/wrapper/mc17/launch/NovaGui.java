@@ -1,7 +1,7 @@
-package nova.core.gui.internal;
+package nova.gui.wrapper.mc17.launch;
 
-import nova.core.gui.dep.GuiModule;
 import nova.core.loader.NovaMod;
+import nova.gui.wrapper.mc17.dependency.GuiModule;
 
 /**
  * The main class to initialize the Gui Plugin
