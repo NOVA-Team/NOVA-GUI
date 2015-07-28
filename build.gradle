@@ -1,0 +1,49 @@
+plugins {
+	id "java"
+	id "nova.gradle" version "0.2.3"
+	id "maven-publish"
+	id "com.jfrog.artifactory" version "3.1.1"
+}
+
+
+apply from: "https://raw.githubusercontent.com/NOVA-Team/NOVA-Gradle/master/shared-scripts/java.gradle"
+
+dependencies novaApi("0.1.0-SNAPSHOT")
+
+nova {
+	wrappers {
+		"17" {
+			wrapper "nova.wrapper.mc1710:NovaWrapper-MC1.7.10:0.1-SNAPSHOT:deobf"
+			runtime project(":mc17")
+		}
+
+		"18" {
+			wrapper "nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT:deobf"
+			runtime project(":mc18")
+		}
+	}
+}
+
+publishing {
+	publications {
+		main(MavenPublication) {
+			from components.java
+
+			artifactId "NOVA-GUI"
+
+			artifact sourcesJar
+			artifact javadocJar
+
+			pom.withXml(writePom(project.properties))
+		}
+	}
+}
+
+artifactory {
+	publish {
+		defaults {
+			publications("main")
+			publishPom = true
+		}
+	}
+}
