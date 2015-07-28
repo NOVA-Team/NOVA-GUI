@@ -1,6 +1,6 @@
 package nova.gui.launch;
 
-import nova.core.gui.InputManager;
+import nova.core.game.InputManager;
 import nova.core.loader.NovaMod;
 import nova.core.network.NetworkManager;
 import nova.core.util.LanguageManager;

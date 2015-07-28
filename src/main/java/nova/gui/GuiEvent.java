@@ -4,6 +4,7 @@ import nova.core.block.Block;
 import nova.core.entity.Entity;
 import nova.core.entity.component.Player;
 import nova.core.event.CancelableEvent;
+import nova.core.game.InputManager;
 import nova.core.world.World;
 import nova.gui.render.Graphics;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -18,9 +19,10 @@ public class GuiEvent extends CancelableEvent {
 	// TODO Document. Add a reference to the component?
 
 	// TODO Split this up into multiple events maybe?
+
 	/**
 	 * Generic mouse event. The mouse position is relative to the component.
-	 * 
+	 *
 	 * @author Vic Nightfall
 	 */
 	public static class MouseEvent extends GuiEvent {

@@ -1,6 +1,6 @@
 package nova.gui.nativeimpl;
 
-import nova.core.gui.InputManager;
+import nova.core.game.InputManager;
 import nova.core.network.Packet;
 import nova.gui.ComponentEvent;
 import nova.gui.ComponentEvent.SidedComponentEvent;
