@@ -1,18 +1,18 @@
 package nova.gui.wrapper.mc17;
 
-import nova.core.gui.AbstractGuiContainer;
-import nova.core.gui.Gui;
-import nova.core.gui.GuiComponent;
-import nova.core.gui.component.Button;
-import nova.core.gui.component.inventory.PlayerInventory;
-import nova.core.gui.component.inventory.Slot;
-import nova.core.gui.factory.GuiComponentFactory;
-import nova.core.gui.nativeimpl.NativeButton;
-import nova.core.gui.nativeimpl.NativeContainer;
-import nova.core.gui.nativeimpl.NativeGui;
-import nova.core.gui.nativeimpl.NativeGuiComponent;
-import nova.core.gui.nativeimpl.NativePlayerInventory;
-import nova.core.gui.nativeimpl.NativeSlot;
+import nova.gui.AbstractGuiContainer;
+import nova.gui.Gui;
+import nova.gui.GuiComponent;
+import nova.gui.component.Button;
+import nova.gui.component.inventory.PlayerInventory;
+import nova.gui.component.inventory.Slot;
+import nova.gui.factory.GuiComponentFactory;
+import nova.gui.nativeimpl.NativeButton;
+import nova.gui.nativeimpl.NativeContainer;
+import nova.gui.nativeimpl.NativeGui;
+import nova.gui.nativeimpl.NativeGuiComponent;
+import nova.gui.nativeimpl.NativePlayerInventory;
+import nova.gui.nativeimpl.NativeSlot;
 
 public class MCGuiComponentFactory extends GuiComponentFactory {
 

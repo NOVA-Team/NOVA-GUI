@@ -1,11 +1,11 @@
 package nova.gui.wrapper.mc18;
 
-import nova.core.gui.AbstractGuiContainer;
-import nova.core.gui.GuiComponent;
-import nova.core.gui.Outline;
-import nova.core.gui.nativeimpl.NativeContainer;
-import nova.core.gui.render.Canvas;
-import nova.core.gui.render.Graphics;
+import nova.gui.AbstractGuiContainer;
+import nova.gui.GuiComponent;
+import nova.gui.Outline;
+import nova.gui.nativeimpl.NativeContainer;
+import nova.gui.render.Canvas;
+import nova.gui.render.Graphics;
 import nova.gui.wrapper.mc18.MCGui.MCContainer;
 
 import java.util.ArrayList;

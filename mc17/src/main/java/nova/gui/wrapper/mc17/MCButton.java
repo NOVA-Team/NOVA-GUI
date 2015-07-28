@@ -6,12 +6,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import nova.core.gui.GuiEvent.MouseEvent;
-import nova.core.gui.GuiEvent.MouseEvent.EnumMouseState;
-import nova.core.gui.Outline;
-import nova.core.gui.component.Button;
-import nova.core.gui.nativeimpl.NativeButton;
-import nova.core.gui.render.Graphics;
+import nova.gui.GuiEvent.MouseEvent;
+import nova.gui.GuiEvent.MouseEvent.EnumMouseState;
+import nova.gui.Outline;
+import nova.gui.component.Button;
+import nova.gui.nativeimpl.NativeButton;
+import nova.gui.render.Graphics;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.lwjgl.opengl.GL11;
 

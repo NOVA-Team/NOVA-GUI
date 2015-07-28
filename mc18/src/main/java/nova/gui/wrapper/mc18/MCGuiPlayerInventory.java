@@ -1,9 +1,9 @@
 package nova.gui.wrapper.mc18;
 
 import net.minecraft.inventory.IInventory;
-import nova.core.gui.component.inventory.PlayerInventory;
-import nova.core.gui.nativeimpl.NativePlayerInventory;
-import nova.core.gui.render.Graphics;
+import nova.gui.component.inventory.PlayerInventory;
+import nova.gui.nativeimpl.NativePlayerInventory;
+import nova.gui.render.Graphics;
 import nova.gui.wrapper.mc18.MCGui.MCContainer;
 import nova.gui.wrapper.mc18.MCGui.MCGuiScreen;
 import nova.wrapper.mc18.wrapper.inventory.BWInventory;

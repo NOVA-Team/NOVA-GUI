@@ -1,7 +1,7 @@
 package nova.gui.wrapper.mc17;
 
-import nova.core.gui.nativeimpl.NativeGuiComponent;
-import nova.core.gui.render.Graphics;
+import nova.gui.nativeimpl.NativeGuiComponent;
+import nova.gui.render.Graphics;
 
 public interface DrawableGuiComponent extends NativeGuiComponent {
 

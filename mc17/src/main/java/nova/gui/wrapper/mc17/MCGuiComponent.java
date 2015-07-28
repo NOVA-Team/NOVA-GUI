@@ -1,9 +1,9 @@
 package nova.gui.wrapper.mc17;
 
-import nova.core.gui.GuiComponent;
-import nova.core.gui.Outline;
-import nova.core.gui.nativeimpl.NativeGuiComponent;
-import nova.core.gui.render.Graphics;
+import nova.gui.GuiComponent;
+import nova.gui.Outline;
+import nova.gui.nativeimpl.NativeGuiComponent;
+import nova.gui.render.Graphics;
 
 // TODO Keyboard and mouse interaction
 public class MCGuiComponent<T extends GuiComponent<?, ?>> implements NativeGuiComponent, DrawableGuiComponent {

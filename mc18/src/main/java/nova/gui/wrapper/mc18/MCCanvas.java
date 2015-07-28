@@ -4,9 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.ResourceLocation;
-import nova.core.gui.Spacing;
-import nova.core.gui.render.Canvas;
 import nova.core.render.texture.Texture;
+import nova.gui.Spacing;
+import nova.gui.render.Canvas;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.lwjgl.opengl.GL11;
 

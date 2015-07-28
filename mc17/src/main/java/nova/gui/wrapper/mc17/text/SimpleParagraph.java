@@ -1,10 +1,10 @@
 package nova.gui.wrapper.mc17.text;
 
 import net.minecraft.client.gui.FontRenderer;
-import nova.core.gui.render.text.FormattedText;
-import nova.core.gui.render.text.FormattedText.TextFormat;
-import nova.core.gui.render.text.TextRenderer;
-import nova.core.gui.render.text.TextRenderer.RenderedText;
+import nova.gui.render.text.FormattedText;
+import nova.gui.render.text.FormattedText.TextFormat;
+import nova.gui.render.text.TextRenderer;
+import nova.gui.render.text.TextRenderer.RenderedText;
 import nova.gui.wrapper.mc17.text.IText.Text;
 import org.lwjgl.opengl.GL11;
 

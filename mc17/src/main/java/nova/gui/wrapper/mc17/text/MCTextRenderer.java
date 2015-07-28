@@ -1,10 +1,10 @@
 package nova.gui.wrapper.mc17.text;
 
 import net.minecraft.client.gui.FontRenderer;
-import nova.core.gui.render.text.FormattedText;
-import nova.core.gui.render.text.TextRenderer;
 import nova.core.render.Color;
 import nova.core.util.math.MathUtil;
+import nova.gui.render.text.FormattedText;
+import nova.gui.render.text.TextRenderer;
 import nova.gui.wrapper.mc17.MCCanvas;
 import nova.gui.wrapper.mc17.text.IText.Text;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;

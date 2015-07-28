@@ -1,12 +1,12 @@
 package nova.gui;
 
-import nova.core.gui.ComponentEvent.ActionEvent;
-import nova.core.gui.component.Button;
-import nova.core.gui.component.Container;
-import nova.core.gui.layout.Anchor;
-import nova.core.gui.layout.BorderLayout;
-import nova.core.gui.layout.Constraints.BorderConstraints;
 import nova.core.network.NetworkTarget.Side;
+import nova.gui.ComponentEvent.ActionEvent;
+import nova.gui.component.Button;
+import nova.gui.component.Container;
+import nova.gui.layout.Anchor;
+import nova.gui.layout.BorderLayout;
+import nova.gui.layout.Constraints.BorderConstraints;
 
 public class GuiTest {
 

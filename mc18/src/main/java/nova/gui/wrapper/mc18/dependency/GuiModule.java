@@ -1,7 +1,7 @@
 package nova.gui.wrapper.mc18.dependency;
 
-import nova.core.gui.factory.GuiComponentFactory;
-import nova.core.gui.factory.GuiManager;
+import nova.gui.factory.GuiComponentFactory;
+import nova.gui.factory.GuiManager;
 import nova.gui.wrapper.mc18.MCGuiComponentFactory;
 import nova.gui.wrapper.mc18.MCGuiFactory;
 import se.jbee.inject.bind.BinderModule;

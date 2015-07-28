@@ -1,6 +1,6 @@
 package nova.gui.wrapper.mc17.text;
 
-import nova.core.gui.render.text.TextRenderer.RenderedText;
+import nova.gui.render.text.TextRenderer.RenderedText;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import java.util.ArrayList;

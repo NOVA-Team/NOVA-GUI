@@ -1,7 +1,7 @@
 package nova.gui.wrapper.mc18.text;
 
 import net.minecraft.client.gui.FontRenderer;
-import nova.core.gui.render.text.FormattedText.TextFormat;
+import nova.gui.render.text.FormattedText.TextFormat;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import java.util.ArrayList;
