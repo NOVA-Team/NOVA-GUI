@@ -8,7 +8,7 @@ import nova.core.gui.ComponentEvent.ComponentEventListener;
 import nova.core.gui.ComponentEvent.ResizeEvent;
 import nova.core.gui.ComponentEvent.SidedComponentEvent;
 import nova.core.gui.GuiEvent.MouseEvent;
-import nova.core.gui.factory.GuiComponentFactory;
+import nova.core.gui.launch.NovaGui;
 import nova.core.gui.layout.GuiLayout;
 import nova.core.gui.nativeimpl.NativeGuiComponent;
 import nova.core.gui.render.Graphics;
@@ -16,7 +16,6 @@ import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Syncable;
 import nova.core.util.Identifiable;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
-import se.jbee.inject.Dependency;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -28,17 +27,12 @@ import java.util.UUID;
  * A component may or may not specify a unique identifier, but keep in mind that
  * they won't be able to receive any events on the {@link Side#SERVER server}
  * side if none is present.
+ *
  * @param <O> Self reference
  * @param <T> {@link NativeGuiComponent} type
  */
 @SuppressWarnings("unchecked")
 public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends NativeGuiComponent> implements Identifiable, EventListener<GuiEvent>, Syncable {
-
-	private static final GuiComponentFactory factory;
-
-	static {
-		factory = Game.injector().resolve(Dependency.dependency(GuiComponentFactory.class));
-	}
 
 	private final boolean hasIdentifier;
 	private final String uniqueID;
@@ -69,7 +63,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 			this.hasIdentifier = false;
 		}
 		this.qualifiedName = uniqueID;
-		factory.applyNativeComponent(this, nativeClass);
+		NovaGui.instance.guiComponentFactory.applyNativeComponent(this, nativeClass);
 	}
 
 	/**
@@ -80,6 +74,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	 * <p>
 	 * Implement this or use an empty string.
 	 * </p>
+	 *
 	 * @param nativeClass
 	 */
 	public GuiComponent(Class<T> nativeClass) {
@@ -109,6 +104,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Sets the outline of this component. Shouldn't be used as the layout
 	 * controls positioning. (If you are a layout don't mind the @deprecated)
+	 *
 	 * @param outline {@link Outline} to use as outline
 	 * @see #setPreferredSize(Vector2D)
 	 */
@@ -141,6 +137,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Sets the requested size for this component. Only works if the parent
 	 * container's {@link GuiLayout} makes use of it.
+	 *
 	 * @param size preferred size of the component
 	 * @return This component
 	 */
@@ -157,6 +154,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Sets the minimal size of this component. It indicates that this component
 	 * shouldn't be shrinked below that size.
+	 *
 	 * @param size minimal size of the component
 	 * @return This component
 	 */
@@ -173,6 +171,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Sets the maximal size of this component. It indicates that this component
 	 * shouldn't be stretched beyond that size.
+	 *
 	 * @param size maximal size of the component
 	 * @return This component
 	 */
@@ -188,6 +187,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 
 	/**
 	 * Sets the {@link Background} of this component.
+	 *
 	 * @param background Background to use
 	 * @return This component
 	 */
@@ -200,6 +200,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	 * Call this when the component's state has changed and needs to be
 	 * re-rendered. The native component is requested to infer
 	 * {@link #render(int, int, Graphics)} after.
+	 *
 	 * @see #revalidate()
 	 */
 	protected void repaint() {
@@ -209,6 +210,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Call this when the component's state has changed and the parent layout
 	 * has to be refreshed.
+	 *
 	 * @see #repaint()
 	 */
 	protected void revalidate() {
@@ -219,6 +221,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Returns the native component element for this component. <b>This should
 	 * only be used by the wrapper!</b>
+	 *
 	 * @return Native component element
 	 */
 	public T getNative() {
@@ -238,6 +241,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 
 	/**
 	 * Sets activity state for this component
+	 *
 	 * @param isActive New state
 	 */
 	public void setActive(boolean isActive) {
@@ -256,6 +260,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 
 	/**
 	 * Sets visibility of this component
+	 *
 	 * @param isVisible New visibility
 	 */
 	public void setVisible(boolean isVisible) {
@@ -298,6 +303,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Special handling for mouse events, the position has to be relative to the
 	 * parent component.
+	 *
 	 * @param event {@link MouseEvent}
 	 */
 	public void onMouseEvent(MouseEvent event) {
@@ -307,6 +313,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Triggers an event for the external listeners registered with
 	 * registerEventListener
+	 *
 	 * @param event ComponentEvent to trigger
 	 */
 	public void triggerEvent(ComponentEvent event) {
@@ -348,6 +355,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	/**
 	 * Renders the component. A super call to this method ensures that the draw
 	 * event is passed to subsequent event listeners.
+	 *
 	 * @param mouseX Mouse position in X-axis relative to this component
 	 * @param mouseY Mouse position in Y-axis relative to this component
 	 * @param graphics {@link Graphics} object used to draw on screen
@@ -381,6 +389,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	 * guaranteed to result in the same element on whatever sub component you
 	 * request it.
 	 * </p>
+	 *
 	 * @return Full qualified unique index for the component.
 	 */
 	public final String getQualifiedName() {
@@ -393,6 +402,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 
 	/**
 	 * Returns true if all parent elements declare a unique identifier
+	 *
 	 * @return hasIdentifier
 	 */
 	protected final boolean hasIdentifierRecursive() {

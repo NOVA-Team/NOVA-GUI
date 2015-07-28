@@ -9,7 +9,7 @@ import nova.core.gui.GuiEvent.MouseEvent;
 import nova.core.gui.GuiEvent.MouseEvent.EnumMouseButton;
 import nova.core.gui.GuiEvent.MouseEvent.EnumMouseState;
 import nova.core.gui.GuiEvent.MouseWheelEvent;
-import nova.core.game.InputManager.Key;
+import nova.core.gui.InputManager;
 import nova.core.gui.Outline;
 import nova.core.gui.factory.GuiEventFactory;
 import nova.core.gui.render.text.TextMetrics;
@@ -17,9 +17,9 @@ import nova.core.network.Packet;
 
 public interface NativeGui extends NativeContainer {
 
-	public void dispatchNetworkEvent(Packet packet);
+	void dispatchNetworkEvent(Packet packet);
 
-	public TextMetrics getTextMetrics();
+	TextMetrics getTextMetrics();
 
 	/**
 	 * Called when the GUI was resized and the child components need to
@@ -27,31 +27,31 @@ public interface NativeGui extends NativeContainer {
 	 *
 	 * @param oldOutline Old {@link Outline}
 	 */
-	public default void onResized(Outline oldOutline) {
+	default void onResized(Outline oldOutline) {
 		getComponent().triggerEvent(new ComponentEvent.ResizeEvent(getComponent(), oldOutline));
 	}
 
-	public default void onNetworkEvent(Packet packet) {
+	default void onNetworkEvent(Packet packet) {
 		Gui gui = (Gui) getComponent();
 		SidedComponentEvent event = GuiEventFactory.instance.constructEvent(packet, gui);
 		event.reduceTarget();
 		event.component.triggerEvent(event);
 	}
 
-	public default void onMousePressed(int mouseX, int mouseY, EnumMouseButton button, boolean state) {
+	default void onMousePressed(int mouseX, int mouseY, EnumMouseButton button, boolean state) {
 		// TODO Post events for CLICK and DOUBLECLICK
 		if (getComponent().isActive()) {
 			getComponent().onMouseEvent(new MouseEvent(mouseX, mouseY, button, state ? EnumMouseState.DOWN : EnumMouseState.UP));
 		}
 	}
 
-	public default void onMouseWheelTurned(int scrollAmount) {
+	default void onMouseWheelTurned(int scrollAmount) {
 		if (getComponent().isActive()) {
 			getComponent().onEvent(new MouseWheelEvent(scrollAmount));
 		}
 	}
 
-	public default void onKeyPressed(Key key, char character, boolean state) {
+	default void onKeyPressed(InputManager.Key key, char character, boolean state) {
 		// TODO Post events for TYPE
 		if (getComponent().isActive()) {
 			getComponent().onEvent(new KeyEvent(key, character, state ? EnumKeyState.DOWN : EnumKeyState.UP));

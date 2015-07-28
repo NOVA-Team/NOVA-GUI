@@ -7,13 +7,13 @@ import nova.core.gui.ComponentEvent.SidedComponentEvent;
 import nova.core.gui.GuiEvent.BindEvent;
 import nova.core.gui.component.inventory.Slot;
 import nova.core.gui.factory.GuiEventFactory;
+import nova.core.gui.launch.NovaGui;
 import nova.core.gui.nativeimpl.NativeGui;
 import nova.core.gui.render.text.TextMetrics;
 import nova.core.inventory.Inventory;
 import nova.core.inventory.component.InventoryPlayer;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Packet;
-import nova.internal.core.Game;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.HashMap;
@@ -38,6 +38,7 @@ public class Gui extends AbstractGuiContainer<Gui, NativeGui> {
 	 * backend. You can register events with
 	 * {@link #onEvent(ComponentEventListener, Class, Side)} specifying on which
 	 * side the event gets processed. Keep the client side restrictions in mind.
+	 *
 	 * @param uniqueID Unique ID of this GUI
 	 * @see #Gui(String, boolean)
 	 */
@@ -51,6 +52,7 @@ public class Gui extends AbstractGuiContainer<Gui, NativeGui> {
 	 * side backend. GUIs without a server side aren't able to send events over
 	 * the network, adding a listener for the server side won't have any effect.
 	 * Keep the client side restrictions in mind.
+	 *
 	 * @param uniqueID Unique ID of this GUI
 	 * @param hasServerSide Optional server side backend
 	 */
@@ -69,13 +71,14 @@ public class Gui extends AbstractGuiContainer<Gui, NativeGui> {
 		if (!sender.hasIdentifer()) {
 			return;
 		}
-		Packet packet = Game.network().newPacket();
+		Packet packet = NovaGui.instance.network.newPacket();
 		GuiEventFactory.instance.constructPacket(event, this, packet, event.getSyncID());
 		getNative().dispatchNetworkEvent(packet);
 	}
 
 	/**
 	 * Binds the GUI, called when displayed.
+	 *
 	 * @param entity Entity which interacted to display this GUI
 	 * @param position block position
 	 */
@@ -108,6 +111,7 @@ public class Gui extends AbstractGuiContainer<Gui, NativeGui> {
 	/**
 	 * Associates an {@link Inventory} with this GUI. Has to be called from the
 	 * {@link BindEvent} in order to supply it to {@link Slot}.
+	 *
 	 * @param id Id used to indentify the inventory
 	 * @param inventory inventory to bind
 	 */

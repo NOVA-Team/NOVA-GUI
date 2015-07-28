@@ -3,8 +3,6 @@ package nova.gui.wrapper.mc17.launch;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import nova.core.gui.InputManager;
-import nova.core.gui.factory.GuiComponentFactory;
 import nova.core.loader.Loadable;
 import nova.core.loader.NovaMod;
 import nova.gui.wrapper.mc17.MCGuiFactory;
@@ -16,18 +14,8 @@ import nova.wrapper.mc1710.launcher.NovaMinecraft;
  *
  * @author Calclavia
  */
-@NovaMod(id = "nova-gui", name = "NOVA-GUI", version = "0.0.1", modules = { GuiModule.class }, novaVersion = "0.1.0")
+@NovaMod(id = "nova-gui-wrapper", name = "NOVA-GUI", version = "0.0.1", modules = { GuiModule.class }, novaVersion = "0.1.0")
 public class NovaGuiWrapper implements Loadable {
-
-	public static NovaGuiWrapper instance;
-	public final InputManager inputManager;
-	public final GuiComponentFactory guiComponentFactory;
-
-	public NovaGuiWrapper(InputManager inputManager, GuiComponentFactory guiComponentFactory) {
-		instance = this;
-		this.inputManager = inputManager;
-		this.guiComponentFactory = guiComponentFactory;
-	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
