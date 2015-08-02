@@ -1,23 +1,8 @@
-buildscript {
-	repositories {
-		mavenCentral()
-		maven {
-			name = "forge"
-			url = "http://files.minecraftforge.net/maven"
-		}
-		maven {
-			name = "sonatype"
-			url = "https://oss.sonatype.org/content/repositories/snapshots/"
-		}
-	}
-	dependencies {
-		classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"
-	}
-}
-
 apply plugin: "maven-publish"
 apply plugin: "com.jfrog.artifactory"
 apply from: "https://raw.githubusercontent.com/NOVA-Team/NOVA-Gradle/master/shared-scripts/java.gradle"
+
+idea.module.name = "GUI-MC-1.8"
 
 publishing {
 	publications {
