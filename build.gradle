@@ -12,16 +12,15 @@ dependencies {
 	compile "nova.core:NovaCore:$novaVersion"
 	testCompile "nova.core:NovaCore:$novaVersion:wrappertests"
 }
-
 nova {
 	wrappers {
 		"17" {
-			wrapper "nova.wrapper.mc1710:NovaWrapper-MC1.7.10:0.1-SNAPSHOT:deobf"
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:$novaVersion"
 			runtime project(":minecraft:1.7")
 		}
 
 		"18" {
-			wrapper "nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT:deobf"
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:$novaVersion"
 			runtime project(":minecraft:1.8")
 		}
 	}
