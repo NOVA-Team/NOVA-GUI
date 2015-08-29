@@ -1,7 +1,7 @@
 package nova.gui.launch;
 
 import nova.core.game.InputManager;
-import nova.core.loader.NovaMod;
+import nova.core.loader.Mod;
 import nova.core.network.NetworkManager;
 import nova.core.util.LanguageManager;
 import nova.gui.factory.GuiComponentFactory;
@@ -9,7 +9,7 @@ import nova.gui.factory.GuiComponentFactory;
 /**
  * @author Calclavia
  */
-@NovaMod(id = "nova-gui", name = "NOVA-GUI", version = "0.0.1", novaVersion = "0.1.0")
+@Mod(id = "nova-gui", name = "NOVA-GUI", version = "0.0.1", novaVersion = "0.1.0")
 public class NovaGui {
 	public static NovaGui instance;
 	public final InputManager input;

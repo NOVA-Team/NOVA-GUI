@@ -1,7 +1,7 @@
 package nova.gui.factory;
 
 import nova.core.entity.Entity;
-import nova.core.loader.NovaMod;
+import nova.core.loader.Mod;
 import nova.core.network.NetworkTarget.IllegalSideException;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Sided;
@@ -80,7 +80,7 @@ public abstract class GuiManager extends Manager<Gui, GuiFactory> {
 	 * only be used for client side GUIs, the usage of
 	 * {@link #showGui(String, Entity, Vector3D)} is recommended.
 	 * </p>
-	 * @param modID Id of the {@link NovaMod} that wants to show the GUI
+	 * @param modID Id of the {@link Mod} that wants to show the GUI
 	 * @param gui GUI to to display
 	 * @param entity {@link Entity} which opened the GUI
 	 * @param position The block coordinate on which to open the GUI

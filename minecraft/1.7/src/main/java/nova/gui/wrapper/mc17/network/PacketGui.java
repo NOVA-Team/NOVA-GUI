@@ -1,4 +1,4 @@
-package nova.gui.wrapper.mc18.network;
+package nova.gui.wrapper.mc17.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -6,11 +6,11 @@ import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
 import nova.core.network.Packet;
 import nova.gui.GuiException;
-import nova.wrapper.mc18.network.MCPacket;
-import nova.wrapper.mc18.network.discriminator.PacketAbstract;
-import nova.gui.wrapper.mc18.MCGui.MCContainer;
+import nova.wrapper.mc1710.network.MCPacket;
+import nova.wrapper.mc1710.network.discriminator.PacketAbstract;
+import nova.gui.wrapper.mc17.MCGui.MCContainer;
 
-//TODO: This is NOT used. NO-OP
+//TODO: Integrate withPriority NOVA
 public class PacketGui extends PacketAbstract {
 
 	private MCPacket wrapped;
