@@ -42,7 +42,7 @@ minecraft {
 
 dependencies {
 	compile rootProject
-	compile group: "nova.core", name: "NovaCore", version: property("nova.version"), changing: true
+	compile group: "nova.core", name: "NovaCore", version: property("novaVersion"), changing: true
 	compile "nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT:deobf"
 }
 
