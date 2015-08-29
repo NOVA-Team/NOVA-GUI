@@ -1,5 +1,8 @@
-package nova.gui.wrapper.mc18;
+package nova.gui.wrapper.mc17;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -8,9 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import nova.core.network.Packet;
 import nova.gui.Gui;
 import nova.gui.GuiComponent;
@@ -20,15 +20,14 @@ import nova.gui.nativeimpl.NativeGui;
 import nova.gui.render.Canvas;
 import nova.gui.render.Graphics;
 import nova.gui.render.text.TextMetrics;
-import nova.gui.wrapper.mc18.text.MCTextRenderer;
+import nova.gui.wrapper.mc17.text.MCTextRenderer;
 import nova.internal.core.Game;
-import nova.gui.wrapper.mc18.network.PacketGui;
-import nova.wrapper.mc18.network.netty.MCNetworkManager;
+import nova.gui.wrapper.mc17.network.PacketGui;
+import nova.wrapper.mc1710.network.netty.MCNetworkManager;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -203,18 +202,13 @@ public class MCGui extends MCGuiContainer implements NativeGui, DrawableGuiCompo
 		@Override
 		protected void mouseClicked(int mouseX, int mouseY, int button) {
 			onMousePressed(mouseX - getOutline().minXi(), mouseY - getOutline().minYi(), getMouseButton(button), true);
-
-			try {
-				super.mouseClicked(mouseX, mouseY, button);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			super.mouseClicked(mouseX, mouseY, button);
 		}
 
 		@Override
-		protected void mouseClickMove(int mouseX, int mouseY, int button, long time) {
+		protected void mouseMovedOrUp(int mouseX, int mouseY, int button) {
 			onMousePressed(mouseX - getOutline().minXi(), mouseY - getOutline().minYi(), getMouseButton(button), false);
-			super.mouseClickMove(mouseX, mouseY, button, time);
+			super.mouseMovedOrUp(mouseX, mouseY, button);
 		}
 
 		private EnumMouseButton getMouseButton(int button) {
@@ -236,14 +230,10 @@ public class MCGui extends MCGuiContainer implements NativeGui, DrawableGuiCompo
 			char ch = Keyboard.getEventCharacter();
 			onKeyPressed(Game.input().getKey(key), ch, state);
 			if (state) {
-				try {
-					keyTyped(ch, key);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				keyTyped(ch, key);
 			}
 
-			this.mc.dispatchKeypresses();
+			this.mc.func_152348_aa();
 		}
 
 		@Override
@@ -255,7 +245,8 @@ public class MCGui extends MCGuiContainer implements NativeGui, DrawableGuiCompo
 		public void setWorldAndResolution(Minecraft mc, int width, int height) {
 			ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
-			MCCanvas canvas = new MCCanvas(width, height, Tessellator.getInstance(), scaledresolution.getScaleFactor());
+			fontRendererObj = mc.fontRenderer;
+			MCCanvas canvas = new MCCanvas(width, height, Tessellator.instance, scaledresolution.getScaleFactor());
 			if (textRenderer == null) {
 				textRenderer = new MCTextRenderer(fontRendererObj, canvas);
 			}

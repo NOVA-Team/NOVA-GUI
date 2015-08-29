@@ -1,6 +1,6 @@
 plugins {
 	id "java"
-	id "nova.gradle" version "0.2.3"
+	id "nova.gradle" version "0.2.5"
 	id "maven-publish"
 	id "com.jfrog.artifactory" version "3.1.1"
 }
@@ -8,7 +8,10 @@ plugins {
 
 apply from: "https://raw.githubusercontent.com/NOVA-Team/NOVA-Gradle/master/shared-scripts/java.gradle"
 
-dependencies novaApi("0.1.0-SNAPSHOT")
+dependencies {
+	compile "nova.core:NovaCore:$novaVersion"
+	testCompile "nova.core:NovaCore:$novaVersion:wrappertests"
+}
 
 nova {
 	wrappers {

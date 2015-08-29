@@ -1,13 +1,13 @@
-package nova.gui.wrapper.mc18.launch;
+package nova.gui.wrapper.mc17.launch;
 
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import nova.core.loader.Loadable;
 import nova.core.loader.Mod;
-import nova.gui.wrapper.mc18.MCGuiFactory;
-import nova.gui.wrapper.mc18.dependency.GuiModule;
-import nova.wrapper.mc18.launcher.NovaMinecraft;
+import nova.gui.wrapper.mc17.MCGuiFactory;
+import nova.gui.wrapper.mc17.dependency.GuiModule;
+import nova.wrapper.mc1710.launcher.NovaMinecraft;
 
 /**
  * The main class to initialize the Gui Plugin
