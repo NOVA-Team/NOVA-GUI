@@ -2,8 +2,8 @@ package nova.gui;
 
 import nova.core.entity.Entity;
 import nova.core.entity.component.Player;
-import nova.core.inventory.Inventory;
-import nova.core.inventory.component.InventoryPlayer;
+import nova.core.component.inventory.Inventory;
+import nova.core.component.inventory.InventoryPlayer;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Packet;
 import nova.gui.component.inventory.Slot;
@@ -81,7 +81,7 @@ public class Gui extends AbstractGuiContainer<Gui, NativeGui> {
 	 */
 	public void bind(Entity entity, Vector3D position) {
 		inventoryMap.clear();
-		playerInventory = entity.get(Player.class).getInventory();
+		playerInventory = entity.components.get(Player.class).getInventory();
 		onEvent(new GuiEvent.BindEvent(this, entity, position));
 		repaint();
 	}

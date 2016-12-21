@@ -174,7 +174,7 @@ public abstract class AbstractGuiContainer<O extends AbstractGuiContainer<O, T>,
 		Objects.requireNonNull(component);
 		component.parentContainer = Optional.of(this);
 		component.updateQualifiedName();
-		children.put(component.getID(), component);
+		children.put(component.getID().asString(), component);
 		layout.add(component, this, properties);
 		getNative().addElement(component);
 		component.triggerEvent(new ComponentEvent.AddEvent(component, this));
@@ -202,7 +202,7 @@ public abstract class AbstractGuiContainer<O extends AbstractGuiContainer<O, T>,
 			throw new GuiComponentException("Component couldn't be removed from parent container as it wasn't a child.");
 		}
 		component.triggerEvent(new ComponentEvent.RemoveEvent(component, this));
-		children.remove(component);
+		children.remove(component.getID().asString());
 		layout.remove(component);
 		component.updateQualifiedName();
 		getNative().removeElement(component);

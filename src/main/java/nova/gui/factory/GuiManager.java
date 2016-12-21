@@ -5,9 +5,10 @@ import nova.core.loader.Mod;
 import nova.core.network.NetworkTarget.IllegalSideException;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Sided;
-import nova.core.util.Manager;
-import nova.core.util.RegistrationException;
-import nova.core.util.Registry;
+import nova.core.util.registry.Manager;
+import nova.core.util.exception.RegistrationException;
+import nova.core.util.registry.FactoryManager;
+import nova.core.util.registry.Registry;
 import nova.gui.Gui;
 import nova.gui.GuiEvent;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -19,7 +20,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public abstract class GuiManager extends Manager<Gui, GuiFactory> {
+public abstract class GuiManager extends FactoryManager<GuiManager, Gui, GuiFactory> {
 
 	// TODO Move this into a seperate manager
 	protected EnumMap<GuiType, List<Gui>> overlayRegistry = new EnumMap<>(GuiType.class);
@@ -36,14 +37,13 @@ public abstract class GuiManager extends Manager<Gui, GuiFactory> {
 		overlayRegistry.get(guiType).add(gui);
 	}
 
-	public GuiFactory register(Supplier<Gui> supplier) {
-		return register(new GuiFactory(supplier));
+	@Override
+	public GuiFactory register(String id, Supplier<Gui> constructor) {
+		return register(new GuiFactory(id, constructor));
 	}
 
-	@Override
-	@Deprecated
-	public GuiFactory register(Function<Object[], Gui> constructor) {
-		return register(new GuiFactory(constructor));
+	public GuiFactory register(String id, Supplier<Gui> constructor, Function<Gui, Gui> processor) {
+		return register(new GuiFactory(id, constructor, processor));
 	}
 
 	/**
@@ -63,8 +63,8 @@ public abstract class GuiManager extends Manager<Gui, GuiFactory> {
 	 * @see #showGui(Gui, Entity, Vector3D)
 	 */
 	public void showGui(String identifier, Entity entity, Vector3D position) {
-		GuiFactory factory = getFactory(identifier).orElseThrow(() -> new RegistrationException(String.format("No GUI called %s registered!", identifier)));
-		showGui(factory.makeGUI(), entity, position);
+		GuiFactory factory = registry.get(identifier).orElseThrow(() -> new RegistrationException(String.format("No GUI called %s registered!", identifier)));
+		showGui(factory.build(), entity, position);
 	}
 
 	/**

@@ -1,8 +1,8 @@
 package nova.gui.component.inventory;
 
-import nova.core.inventory.Inventory;
-import nova.core.inventory.InventoryException;
-import nova.core.inventory.ItemFilter;
+import nova.core.component.inventory.Inventory;
+import nova.core.component.inventory.InventoryException;
+import nova.core.component.inventory.ItemFilter;
 import nova.core.item.Item;
 import nova.gui.Gui;
 import nova.gui.GuiComponent;

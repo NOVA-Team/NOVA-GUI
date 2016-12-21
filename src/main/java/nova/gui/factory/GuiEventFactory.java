@@ -1,6 +1,6 @@
 package nova.gui.factory;
 
-import nova.core.event.EventException;
+import nova.core.event.bus.EventException;
 import nova.core.network.Packet;
 import nova.gui.ComponentEvent;
 import nova.gui.Gui;
@@ -39,10 +39,10 @@ public class GuiEventFactory {
 
 		if (eventID < 0 || eventID >= networkEvents.size())
 			throw new EventException(String.format("Illegal event type %s at GUI %s", eventID, parentGui));
-		if (!qualifiedName.startsWith(parentGui.getID()))
+		if (!qualifiedName.startsWith(parentGui.getID().asString()))
 			throw new EventException(String.format("Component \"%s\" does not specify an applicable qualified name for GUI \"%s\"", qualifiedName, parentGui));
 
-		qualifiedName = qualifiedName.substring(parentGui.getID().length() + 1);
+		qualifiedName = qualifiedName.substring(parentGui.getID().asString().length() + 1);
 		Optional<GuiComponent<?, ?>> component = parentGui.getChildElement(qualifiedName);
 		if (!component.isPresent()) {
 			throw new EventException(String.format("Received an event for a non-existent component \"%s\" at GUI \"%s\"", qualifiedName, parentGui));
