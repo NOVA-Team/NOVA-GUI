@@ -1,8 +1,10 @@
 package nova.gui.layout;
 
-import nova.core.util.NovaException;
+import nova.core.util.exception.NovaException;
 
 public class LayoutException extends NovaException {
+	private static final long serialVersionUID = 2017_01_22L;
+
 	public LayoutException() {
 		super();
 	}

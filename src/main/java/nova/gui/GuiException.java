@@ -1,8 +1,10 @@
 package nova.gui;
 
-import nova.core.util.NovaException;
+import nova.core.util.exception.NovaException;
 
 public class GuiException extends NovaException {
+	private static final long serialVersionUID = 2017_01_22L;
+
 	public GuiException() {
 		super();
 	}

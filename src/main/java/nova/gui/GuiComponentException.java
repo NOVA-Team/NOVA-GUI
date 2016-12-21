@@ -1,6 +1,8 @@
 package nova.gui;
 
 public class GuiComponentException extends GuiException {
+	private static final long serialVersionUID = 2017_01_22L;
+
 	public GuiComponentException() {
 		super();
 	}

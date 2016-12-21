@@ -1,9 +1,9 @@
 package nova.gui;
 
-import nova.core.event.EventBus;
-import nova.core.event.EventListener;
-import nova.core.event.SidedEventBus;
-import nova.core.event.SidedEventBus.SidedEvent;
+import nova.core.event.bus.EventBus;
+import nova.core.event.bus.EventListener;
+import nova.core.event.bus.SidedEventBus;
+import nova.core.event.bus.SidedEventBus.SidedEvent;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Syncable;
 import nova.core.util.Identifiable;
@@ -318,7 +318,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 
 	// Internal listener
 	public <EVENT extends GuiEvent> O onGuiEvent(EventListener<EVENT> listener, Class<EVENT> clazz) {
-		guiEventBus.add(listener, clazz);
+		guiEventBus.on(clazz).bind(listener);
 		return (O) this;
 	}
 
@@ -328,7 +328,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 		if (side == Side.SERVER && !hasIdentifierRecursive()) {
 			throw new GuiComponentException("Components without unique identifier can't recieve events on the server side!");
 		}
-		componentEventBus.add(listener, clazz, side);
+		componentEventBus.on(clazz).bind(listener);
 		return (O) this;
 	}
 
@@ -340,7 +340,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 		if (side == Side.SERVER && !hasIdentifierRecursive()) {
 			throw new GuiComponentException("Components without unique identifier can't recieve events on the server side!");
 		}
-		componentEventBus.add(listener, clazz, side);
+		componentEventBus.on(clazz).bind(listener);
 		return (O) this;
 	}
 
