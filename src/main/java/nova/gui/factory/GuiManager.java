@@ -5,12 +5,12 @@ import nova.core.loader.Mod;
 import nova.core.network.NetworkTarget.IllegalSideException;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Sided;
-import nova.core.util.registry.Manager;
 import nova.core.util.exception.RegistrationException;
 import nova.core.util.registry.FactoryManager;
 import nova.core.util.registry.Registry;
 import nova.gui.Gui;
 import nova.gui.GuiEvent;
+import nova.internal.core.Game;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.ArrayList;
@@ -147,6 +147,17 @@ public abstract class GuiManager extends FactoryManager<GuiManager, Gui, GuiFact
 	 */
 	public GuiType getActiveGuiType() {
 		return getActiveGui().isPresent() ? GuiType.CUSTOM : GuiType.NATIVE;
+	}
+
+	@Override
+	public void init() {
+		Game.events().publish(new Init(this));
+	}
+
+	public class Init extends ManagerEvent<GuiManager> {
+		public Init(GuiManager manager) {
+			super(manager);
+		}
 	}
 
 	public static enum GuiType {
