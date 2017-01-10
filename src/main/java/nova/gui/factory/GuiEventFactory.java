@@ -39,10 +39,10 @@ public class GuiEventFactory {
 
 		if (eventID < 0 || eventID >= networkEvents.size())
 			throw new EventException(String.format("Illegal event type %s at GUI %s", eventID, parentGui));
-		if (!qualifiedName.startsWith(parentGui.getID().asString()))
+		if (!qualifiedName.startsWith(parentGui.getID()))
 			throw new EventException(String.format("Component \"%s\" does not specify an applicable qualified name for GUI \"%s\"", qualifiedName, parentGui));
 
-		qualifiedName = qualifiedName.substring(parentGui.getID().asString().length() + 1);
+		qualifiedName = qualifiedName.substring(parentGui.getID().length() + 1);
 		Optional<GuiComponent<?, ?>> component = parentGui.getChildElement(qualifiedName);
 		if (!component.isPresent()) {
 			throw new EventException(String.format("Received an event for a non-existent component \"%s\" at GUI \"%s\"", qualifiedName, parentGui));

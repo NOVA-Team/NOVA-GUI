@@ -6,19 +6,15 @@ import nova.core.event.bus.SidedEventBus;
 import nova.core.event.bus.SidedEventBus.SidedEvent;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Syncable;
-import nova.core.util.id.Identifiable;
+import nova.core.util.Identifiable;
 import nova.gui.launch.NovaGui;
 import nova.gui.layout.GuiLayout;
 import nova.gui.nativeimpl.NativeGuiComponent;
 import nova.gui.render.Graphics;
-
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import nova.core.util.id.Identifier;
-import nova.core.util.id.StringIdentifier;
 
 /**
  * Defines a basic gui component. A component can be added to
@@ -369,8 +365,8 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 	 * specified.
 	 */
 	@Override
-	public final Identifier getID() {
-		return new StringIdentifier(uniqueID);
+	public final String getID() {
+		return uniqueID;
 	}
 
 	/**
@@ -427,7 +423,7 @@ public abstract class GuiComponent<O extends GuiComponent<O, T>, T extends Nativ
 		if (parentContainer.isPresent()) {
 			qualifiedName = parentContainer.get().getQualifiedName() + "." + (hasIdentifer() ? getID() : "<>");
 		} else {
-			qualifiedName = getID().asString();
+			qualifiedName = getID();
 		}
 	}
 }
