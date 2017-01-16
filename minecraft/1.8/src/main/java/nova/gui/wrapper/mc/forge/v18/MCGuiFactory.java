@@ -16,6 +16,7 @@ import nova.gui.factory.GuiFactory;
 import nova.gui.factory.GuiManager;
 import nova.gui.wrapper.mc.forge.v18.MCGui.MCContainer;
 import nova.gui.wrapper.mc.forge.v18.MCGui.MCGuiScreen;
+import nova.internal.core.Game;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.ArrayList;
@@ -26,6 +27,10 @@ public class MCGuiFactory extends GuiManager {
 
 	private static Optional<Gui> guiToOpen = Optional.empty();
 	private static List<GuiFactory> idMappedFactories = new ArrayList<>();
+
+	public MCGuiFactory() {
+		super(Game.events());
+	}
 
 	@Override
 	public GuiFactory register(GuiFactory factory) {

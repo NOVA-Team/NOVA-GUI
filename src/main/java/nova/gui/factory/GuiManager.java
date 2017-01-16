@@ -1,6 +1,7 @@
 package nova.gui.factory;
 
 import nova.core.entity.Entity;
+import nova.core.event.bus.GlobalEvents;
 import nova.core.loader.Mod;
 import nova.core.network.NetworkTarget.IllegalSideException;
 import nova.core.network.NetworkTarget.Side;
@@ -10,7 +11,6 @@ import nova.core.util.registry.FactoryManager;
 import nova.core.util.registry.Registry;
 import nova.gui.Gui;
 import nova.gui.GuiEvent;
-import nova.internal.core.Game;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.ArrayList;
@@ -24,9 +24,11 @@ public abstract class GuiManager extends FactoryManager<GuiManager, Gui, GuiFact
 
 	// TODO Move this into a seperate manager
 	protected EnumMap<GuiType, List<Gui>> overlayRegistry = new EnumMap<>(GuiType.class);
+	private final GlobalEvents events;
 
-	public GuiManager() {
+	public GuiManager(GlobalEvents events) {
 		super(new Registry<>());
+		this.events = events;
 	}
 
 	@Deprecated
@@ -151,7 +153,7 @@ public abstract class GuiManager extends FactoryManager<GuiManager, Gui, GuiFact
 
 	@Override
 	public void init() {
-		Game.events().publish(new Init(this));
+		this.events.publish(new Init(this));
 	}
 
 	public class Init extends ManagerEvent<GuiManager> {
