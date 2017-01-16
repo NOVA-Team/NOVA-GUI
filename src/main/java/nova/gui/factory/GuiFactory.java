@@ -1,22 +1,23 @@
 package nova.gui.factory;
 
-import nova.core.util.Factory;
+import nova.core.util.registry.Factory;
 import nova.gui.Gui;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class GuiFactory extends Factory<Gui> {
+public class GuiFactory extends Factory<GuiFactory, Gui> {
 
-	public GuiFactory(Function<Object[], Gui> constructor) {
-		super(constructor);
+	public GuiFactory(String id, Supplier<Gui> constructor) {
+		super(id, constructor);
 	}
 
-	public GuiFactory(Supplier<Gui> supplier) {
-		super(o -> supplier.get());
+	public GuiFactory(String id, Supplier<Gui> constructor, Function<Gui, Gui> processor) {
+		super(id, constructor, processor);
 	}
 
-	public Gui makeGUI(Object... args) {
-		return constructor.apply(args);
+	@Override
+	protected GuiFactory selfConstructor(String id, Supplier<Gui> constructor, Function<Gui, Gui> processor) {
+		return new GuiFactory(id, constructor, processor);
 	}
 }

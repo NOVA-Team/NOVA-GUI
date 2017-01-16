@@ -1,6 +1,6 @@
 package nova.gui.component.inventory;
 
-import nova.core.inventory.component.InventoryPlayer;
+import nova.core.component.inventory.InventoryPlayer;
 import nova.gui.GuiComponent;
 import nova.gui.GuiEvent;
 import nova.gui.nativeimpl.NativePlayerInventory;
@@ -9,7 +9,7 @@ import nova.gui.nativeimpl.NativePlayerInventory;
  * Defines the standard player inventory. It automatically gets wrapped to the
  * player inventory and its appearance, size, and other properties might differ
  * from wrapper to wrapper.
- * 
+ *
  * @author Vic Nightfall
  */
 public class PlayerInventory extends GuiComponent<PlayerInventory, NativePlayerInventory> {

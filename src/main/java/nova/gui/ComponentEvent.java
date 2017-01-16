@@ -1,8 +1,8 @@
 package nova.gui;
 
-import nova.core.event.CancelableEvent;
-import nova.core.event.EventListener;
-import nova.core.event.SidedEventBus.SidedEvent;
+import nova.core.event.bus.CancelableEvent;
+import nova.core.event.bus.EventListener;
+import nova.core.event.bus.SidedEventBus.SidedEvent;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.network.Sync;
 import nova.gui.factory.GuiEventFactory;
@@ -10,7 +10,7 @@ import nova.gui.factory.GuiEventFactory;
 /**
  * Event created by {@link GuiComponent}. These events, opposed to
  * {@link GuiEvent}, aren't propagated to the child components.
- * 
+ *
  * @see SidedComponentEvent
  * @see ComponentEventListener
  * @see GuiComponent#triggerEvent(ComponentEvent)
@@ -30,7 +30,7 @@ public abstract class ComponentEvent extends CancelableEvent {
 	/**
 	 * Specify to indicate which id {@link Sync} will use when getting
 	 * serialized to a packet.
-	 * 
+	 *
 	 * @return sync id
 	 */
 	public int getSyncID() {
@@ -40,9 +40,9 @@ public abstract class ComponentEvent extends CancelableEvent {
 	/**
 	 * {@link EventListener} interface used by {@link GuiComponent} to specify
 	 * the component type. Preferred over using {@link #component} directly.
-	 * 
+	 *
 	 * @author Vic Nightfall
-	 * 
+	 *
 	 * @param <EVENT>
 	 * @param <T>
 	 * @see GuiComponent#onEvent(ComponentEventListener, Class)
@@ -65,7 +65,7 @@ public abstract class ComponentEvent extends CancelableEvent {
 	 * {@link ComponentEvent} which can be sent over the network. Has to be
 	 * registered with
 	 * {@link GuiEventFactory#registerNetworkEvent(java.util.function.Function)}
-	 * 
+	 *
 	 * @author Vic Nightfall
 	 */
 	public static class SidedComponentEvent extends ComponentEvent implements SidedEvent {

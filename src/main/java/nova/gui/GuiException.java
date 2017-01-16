@@ -1,6 +1,6 @@
 package nova.gui;
 
-import nova.core.util.NovaException;
+import nova.core.util.exception.NovaException;
 
 public class GuiException extends NovaException {
 	public GuiException() {

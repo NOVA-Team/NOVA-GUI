@@ -1,6 +1,6 @@
 package nova.gui.layout;
 
-import nova.core.util.NovaException;
+import nova.core.util.exception.NovaException;
 
 public class LayoutException extends NovaException {
 	public LayoutException() {

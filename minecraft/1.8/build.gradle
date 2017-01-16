@@ -42,8 +42,8 @@ minecraft {
 
 dependencies {
 	compile rootProject
-	compile group: "nova.core", name: "NovaCore", version: property("novaVersion"), changing: true
-	compile "nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT:deobf"
+	compile group: "nova.core", name: "NOVA-Core", version: property("nova_version"), changing: true
+	compile "nova.core:NOVA-Core-Wrapper-MC1.8:0.1.0-SNAPSHOT:deobf"
 }
 
 processResources {
