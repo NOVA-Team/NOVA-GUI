@@ -3,7 +3,7 @@ package nova.gui.launch;
 import nova.core.game.InputManager;
 import nova.core.loader.Mod;
 import nova.core.network.NetworkManager;
-import nova.core.util.LanguageManager;
+import nova.core.util.registry.LanguageManager;
 import nova.gui.factory.GuiComponentFactory;
 
 /**
