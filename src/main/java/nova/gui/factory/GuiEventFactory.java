@@ -1,6 +1,6 @@
 package nova.gui.factory;
 
-import nova.core.event.EventException;
+import nova.core.event.bus.EventException;
 import nova.core.network.Packet;
 import nova.gui.ComponentEvent;
 import nova.gui.Gui;

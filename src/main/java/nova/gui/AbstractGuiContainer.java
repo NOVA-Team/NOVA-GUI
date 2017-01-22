@@ -184,6 +184,7 @@ public abstract class AbstractGuiContainer<O extends AbstractGuiContainer<O, T>,
 	/**
 	 * Resets the GuiContainer, removing all the components and layouts
 	 */
+	@SuppressWarnings("unchecked")
 	public void reset() {
 		((HashMap<String, GuiComponent<?, ?>>) children.clone()).values().forEach(this::removeElement);
 	}
@@ -202,7 +203,7 @@ public abstract class AbstractGuiContainer<O extends AbstractGuiContainer<O, T>,
 			throw new GuiComponentException("Component couldn't be removed from parent container as it wasn't a child.");
 		}
 		component.triggerEvent(new ComponentEvent.RemoveEvent(component, this));
-		children.remove(component);
+		children.remove(component.getID());
 		layout.remove(component);
 		component.updateQualifiedName();
 		getNative().removeElement(component);

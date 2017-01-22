@@ -3,6 +3,7 @@ package nova.gui.render;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 public class Vertex2D extends Vector2D {
+	private static final long serialVersionUID = 2017_01_22L;
 
 	public final boolean uv;
 	public final double u, v;

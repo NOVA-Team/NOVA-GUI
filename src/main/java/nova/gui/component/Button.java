@@ -34,6 +34,7 @@ public class Button extends GuiComponent<Button, NativeButton> {
 				if (isMouseOver()) {
 					triggerEvent(new ComponentEvent.ActionEvent(this));
 				}
+				break;
 			default:
 				break;
 		}
